@@ -3,11 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/Daniel/Documents/developer.android.com/Cariaid/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/drawable/selected.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/un_selected.xml" value="0.2065" />
+        <entry key="app/src/main/res/layout/activity_auth.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/layout/activity_dash_board.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3072916666666667" />
+        <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.28888888888888886" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2921875" />
+        <entry key="app/src/main/res/layout/onboarding_item.xml" value="0.3072916666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
