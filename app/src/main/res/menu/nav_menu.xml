@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-  
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_home"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_home_idel"
+        android:title="Home"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/navigation_donation"
+        android:orderInCategory="2"
+        android:title="donate"
+        android:icon="@drawable/ic_donate"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/navigation_history"
+        android:orderInCategory="2"
+        android:title="History"
+        android:icon="@drawable/ic_round_history_24"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/navigation_profile"
+        android:orderInCategory="2"
+        android:title="Profile"
+        android:icon="@drawable/ic_round_account_box_24"
+        app:showAsAction="never"/>
+
 </menu>

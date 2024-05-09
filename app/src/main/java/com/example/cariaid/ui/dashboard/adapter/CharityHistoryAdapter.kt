@@ -7,16 +7,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.cariaid.data.model.CharityData
+import com.example.cariaid.data.model.CharityHistory
 import com.example.cariaid.databinding.DonationLayoutBinding
+import com.example.cariaid.databinding.LayoutHistoryBinding
 
-class CharityAdapter(private val onClick:(CharityData)->Unit): ListAdapter<CharityData, CharityAdapter.CharityViewHolder>(CharacterDiffCallback) {
+class CharityHistoryAdapter(private val onClick:(CharityHistory)->Unit): ListAdapter<CharityHistory, CharityHistoryAdapter.CharityViewHolder>(CharacterDiffCallback) {
 
-    inner class CharityViewHolder(private var binding: DonationLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(charity: CharityData){
+    inner class CharityViewHolder(private var binding: LayoutHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(charity: CharityHistory){
             with(binding){
                 charityIcon.load(charity.charityIcon)
                 charityName.text = charity.charityName
-                charityType.text = charity.charityType
+                charityDonatedAmount.text = "Donated £${charity.amountDonated}"
                 binding.root.setOnClickListener {
                         onClick(charity)
                 }
@@ -26,7 +28,7 @@ class CharityAdapter(private val onClick:(CharityData)->Unit): ListAdapter<Chari
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharityViewHolder {
-        return CharityViewHolder(DonationLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return CharityViewHolder(LayoutHistoryBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: CharityViewHolder, position: Int) {
@@ -34,12 +36,12 @@ class CharityAdapter(private val onClick:(CharityData)->Unit): ListAdapter<Chari
         holder.bind(character)
     }
 
-    object CharacterDiffCallback : DiffUtil.ItemCallback<CharityData>() {
-        override fun areItemsTheSame(oldItem: CharityData, newItem: CharityData): Boolean {
+    object CharacterDiffCallback : DiffUtil.ItemCallback<CharityHistory>() {
+        override fun areItemsTheSame(oldItem: CharityHistory, newItem: CharityHistory): Boolean {
             return oldItem==newItem
         }
 
-        override fun areContentsTheSame(oldItem: CharityData, newItem: CharityData): Boolean {
+        override fun areContentsTheSame(oldItem: CharityHistory, newItem: CharityHistory): Boolean {
             return oldItem.charityName == newItem.charityName
         }
     }

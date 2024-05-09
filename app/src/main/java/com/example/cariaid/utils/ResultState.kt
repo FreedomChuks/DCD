@@ -1,10 +1,12 @@
 package com.example.cariaid.utils
-
-sealed class DataState<T>(
-    val datas: T?=null
+/** Data StateClass that represent Network Response State
+ * **/
+sealed class ResultState<T>(
+    val data:T?=null,
+    val error:String?=null
 ){
-    class Loading <T> : DataState<T>()
-    data class Success<T>(val data: T?):DataState<T>(datas = data)
-    data class Error<T>(val error: String?):DataState<T>()
-    class EmptyState<T>:DataState<T>()
+    class Empty<T>: ResultState<T>()
+    class Loading<T> : ResultState<T>()
+    class Success<T>(data: T?): ResultState<T>(data = data)
+    class Error<T>(error: String?): ResultState<T>(error = error)
 }

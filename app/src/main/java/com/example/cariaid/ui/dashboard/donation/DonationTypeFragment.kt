@@ -1,60 +1,70 @@
 package com.example.cariaid.ui.dashboard.donation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.cariaid.R
+import com.example.cariaid.databinding.FragmentDonateDetailsBinding
+import com.example.cariaid.databinding.FragmentDonationTypeBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ChooseDonationType.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ChooseDonationType : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class DonationTypeFragment : Fragment() {
+    lateinit var binding:FragmentDonationTypeBinding
+    var isCash:Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_donation_type, container, false)
+    ): View {
+        binding = FragmentDonationTypeBinding.inflate(inflater,container, false)
+        retrieveData()
+        setUpUI()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ChooseDonationType.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ChooseDonationType().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun setUpUI() {
+        with(binding){
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+            cash.isChecked = true
+            cash.setOnClickListener {
+                isCash=true
+                cash.isChecked = true
+            }
+            item.setOnClickListener {
+                isCash=false
+                item.isChecked = true
+            }
+            cash.setOnCheckedChangeListener { card, isChecked ->
+                if (isChecked){
+                    isCash=true
+                    item.isCheckable=true
+                    item.isChecked =false
+
                 }
             }
+            item.setOnCheckedChangeListener { card, isChecked ->
+                if (isChecked){
+                    isCash=false
+                    cash.isCheckable=true
+                    cash.isChecked =false
+                }
+            }
+        }
+
     }
+
+    private fun retrieveData(){
+        arguments?.let { arg->
+            val data=DonationTypeFragmentArgs.fromBundle(arg).CharityData
+            binding.next.setOnClickListener {
+                val action = DonationTypeFragmentDirections.actionDonationTypeFragmentToDonationCompletionFragment(data,isCash)
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+
 }

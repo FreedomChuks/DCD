@@ -21,4 +21,18 @@
         <item name="android:statusBarColor">@color/white</item>
         <item name ="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+
+    <style name="DialogFragment" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/lightWhite</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name ="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.BottomNavigationView.Text">
+        <item name="fontFamily">@font/circular_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

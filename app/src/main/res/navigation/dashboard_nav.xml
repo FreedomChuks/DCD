@@ -1,6 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dashboard_nav">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_nav"
+    app:startDestination="@id/navigation_home">
 
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.cariaid.ui.dashboard.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_donateFragment"
+            app:destination="@id/navigation_donation" />
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/navigation_history" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_home_to_donateDetailsFragment"
+            app:destination="@id/donateDetailsFragment"
+            app:enterAnim="@anim/slide_left_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_right_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.example.cariaid.ui.dashboard.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/navigation_donation"
+        android:name="com.example.cariaid.ui.dashboard.DonateFragment"
+        android:label="fragment_donate"
+        tools:layout="@layout/fragment_donate" >
+        <action
+            android:id="@+id/action_navigation_donation_to_donateDetailsFragment"
+            app:destination="@id/donateDetailsFragment"
+            app:enterAnim="@anim/slide_left_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_right_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.cariaid.ui.dashboard.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/donateDetailsFragment"
+        android:name="com.example.cariaid.ui.dashboard.donation.DonateDetailsFragment"
+        android:label="fragment_donate_details"
+        tools:layout="@layout/fragment_donate_details" >
+        <argument
+            android:name="CharityData"
+            app:argType="com.example.cariaid.data.model.CharityData" />
+        <action
+            android:id="@+id/action_donateDetailsFragment_to_donationTypeFragment"
+            app:destination="@id/donationTypeFragment"
+            app:enterAnim="@anim/slide_left_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_right_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/donationTypeFragment"
+        android:name="com.example.cariaid.ui.dashboard.donation.DonationTypeFragment"
+        android:label="DonationTypeFragment" >
+        <action
+            android:id="@+id/action_donationTypeFragment_to_donationCompletionFragment"
+            app:destination="@id/donationCompletionFragment"
+            app:enterAnim="@anim/slide_left_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_right_in"
+            app:popExitAnim="@anim/slide_left_out" />
+        <argument
+            android:name="CharityData"
+            app:argType="com.example.cariaid.data.model.CharityData" />
+    </fragment>
+    <fragment
+        android:id="@+id/donationCompletionFragment"
+        android:name="com.example.cariaid.ui.dashboard.donation.DonationCompletionFragment"
+        android:label="fragment_donation_completion"
+        tools:layout="@layout/fragment_donation_completion" >
+        <argument
+            android:name="CharityData"
+            app:argType="com.example.cariaid.data.model.CharityData" />
+        <argument
+            android:name="isCash"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_donationCompletionFragment_to_success"
+            app:destination="@id/success"
+            app:enterAnim="@anim/slide_left_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_right_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/success"
+        android:name="com.example.cariaid.ui.dashboard.Success"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success" >
+        <argument
+            android:name="charity"
+            app:argType="com.example.cariaid.data.model.CharityData" />
+        <argument
+            android:name="Amount"
+            app:argType="string" />
+    </fragment>
 </navigation>
